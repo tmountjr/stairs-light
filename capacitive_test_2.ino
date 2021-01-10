@@ -1,6 +1,6 @@
 // Touch sensing variables
-const int THRESHOLD = 30;
-const long ACTIVATE_FOR = 5000;
+const float THRESHOLD = 7;
+const long ACTIVATE_FOR = 60000;
 const long DEBOUNCE = 500;
 long activatedAt = -1;
 long deactivatedAt = -1;
@@ -18,6 +18,7 @@ const int TOUCH_PIN = T2;
 
 // Turn off the LED, track state, and reset timer.
 void turnOff() {
+//  Serial.println("TURN OFF");
   digitalWrite(LED_PIN, LED_LEVEL_OFF);
   ledState = LED_STATE_OFF;
   activatedAt = -1;
@@ -26,6 +27,7 @@ void turnOff() {
 
 // Turn on the LED, track state, and update timer.
 void turnOn() {
+//  Serial.println("TURN ON");
   digitalWrite(LED_PIN, LED_LEVEL_ON);
   ledState = LED_STATE_ON;
   activatedAt = millis();
@@ -35,6 +37,7 @@ void turnOn() {
 // Generic event handler that allows a second touch event to turn the LED off and
 // stop the timer.
 void handleTouchEvent() {
+//  Serial.println("Touch Event");
   long t = millis();
   if (ledState == LED_STATE_OFF) {
     if (t > deactivatedAt + DEBOUNCE) {
@@ -49,6 +52,7 @@ void handleTouchEvent() {
 
 void setup() {
   pinMode(LED_PIN, OUTPUT);
+//  Serial.begin(115200);
 
   // Test the LED.
   for (int i = 0; i < 3; i++) {
@@ -66,6 +70,7 @@ void setup() {
 }
 
 void loop() {
+//  Serial.println(touchRead(TOUCH_PIN));
   long t = millis();
   if (ledState == LED_STATE_ON && t > activatedAt + ACTIVATE_FOR) {
     turnOff();
