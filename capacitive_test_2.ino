@@ -115,7 +115,7 @@ const char* serverIndex = R"EOF(
     });
   });
 </script>
-)";
+)EOF";
 
 // Turn off the LED, track state, and reset timer.
 void turnOff() {
