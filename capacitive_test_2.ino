@@ -194,7 +194,7 @@ void setup() {
       if (Update.end(true)) {
         Serial.printf("Update Success! Total size: %u\nRebooting...\n", upload.totalSize);
       } else {
-        Update.printError(Serial)l
+        Update.printError(Serial);
       }
     }
   });
