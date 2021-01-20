@@ -4,7 +4,7 @@
       <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
         <a class="pure-menu-heading">Upload Sketch</a>
         <ul class="pure-menu-list">
-          <li class="pure-menu-item pure-menu-disabled">Current Version: 1.2</li>
+          <li class="pure-menu-item pure-menu-disabled">Current Version: 1.4</li>
         </ul>
       </div>
     </header>

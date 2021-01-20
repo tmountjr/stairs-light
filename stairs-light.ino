@@ -4,7 +4,7 @@
 #include <ESPmDNS.h>
 #include <Update.h>
 
-const VERSION = 1.3;
+const long VERSION = 1.4;
 
 // Touch sensing variables
 const float THRESHOLD = 7;
@@ -37,19 +37,22 @@ WebServer server(80);
 const char *serverIndex = R"EOF(
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Upload Sketch</title>
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/base-min.css">
-    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
-  </head>
-  <body>
-    <div id="app"></div>
 
-    <script src="https://vuejs.org/js/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/tmountjr/stairs-light/js/dist/main.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Upload Sketch</title>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/base-min.css">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script src="https://vuejs.org/js/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/tmountjr/stairs-light@1.4.0/js/dist/main.js"></script>
+</body>
+
 </html>
 )EOF";
 
