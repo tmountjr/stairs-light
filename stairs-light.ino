@@ -4,7 +4,7 @@
 #include <ESPmDNS.h>
 #include <Update.h>
 
-const VERSION = 1.2;
+const VERSION = 1.3;
 
 // Touch sensing variables
 const float THRESHOLD = 7;
@@ -43,20 +43,9 @@ const char *serverIndex = R"EOF(
     <title>Upload Sketch</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/base-min.css">
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style type="text/css">
-      .content {
-        margin-left: auto;
-        margin-right: auto;
-      }
-    </style>
   </head>
   <body>
-    <div class="pure-g">
-      <div class="content pure-u-1-3">
-        <div id="app"></div>
-      </div>
-    </div>
+    <div id="app"></div>
 
     <script src="https://vuejs.org/js/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/tmountjr/stairs-light/js/dist/main.js"></script>

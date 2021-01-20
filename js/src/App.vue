@@ -1,26 +1,72 @@
 <template>
   <div id="upload-sketch">
-    <form class="pure-form">
-      <fieldset>
-        <legend>Upload the .bin file:</legend>
-        <label class="pure-button">
-          Browse...
-          <input type="file" name="upload" hidden @change="fileChange($event.target.files)">
-        </label>
-        <input
-          type="button"
-          value="Upload"
-          class="pure-button pure-button-primary"
-          :disabled="!uploadReady"
-          @click="upload"
-        >
-      </fieldset>
-    </form>
-    <progress v-if="showUploadMeter" max="100" :value.prop="uploadPercentage"></progress>
+    <header>
+      <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading">Upload Sketch</a>
+        <ul class="pure-menu-list">
+          <li class="pure-menu-item pure-menu-disabled">Current Version: 1.2</li>
+        </ul>
+      </div>
+    </header>
+    <div class="wrapper pure-g">
+      <div class="content pure-u-1-3">
+        <form class="pure-form">
+          <fieldset>
+            <legend>Upload the .bin file:</legend>
+            <label class="pure-button">
+              Browse...
+              <input type="file" name="upload" hidden @change="fileChange($event.target.files)">
+            </label>
+            <input
+              type="button"
+              value="Upload"
+              class="pure-button pure-button-primary"
+              :disabled="!uploadReady"
+              @click="upload"
+            >
+          </fieldset>
+        </form>
+        <progress v-if="showUploadMeter" max="100" :value.prop="uploadPercentage"></progress>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
+  header {
+    height: 2.5em;
+  }
+  
+  .home-menu {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+    background: #2d3e50;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .home-menu .pure-menu-heading {
+    color: #eee;
+    font-weight: 400;
+    font-size: 120%;
+  }
+
+  .home-menu .pure-menu-disabled {
+    color: #eee;
+    font-weight: 400;
+  }
+
+  .home-menu .pure-menu-list {
+    height: 100%;
+  }
+
+  .wrapper {
+    padding-top: 2em;
+  }
+
+  .content {
+    margin: 0 auto;
+  }
+
   .pure-form label.pure-button {
     margin: 0;
   }
@@ -84,7 +130,7 @@ export default {
           headers: {
             'Content-Type': 'multipart/form-data'
           },
-          onUploadProgress: function(progressEvent) {
+          onUploadProgress: function (progressEvent) {
             this.uploadPercentage = parseInt(Math.round(progressEvent.loaded / progressEvent.total) * 100)
           }.bind(this)
         })
