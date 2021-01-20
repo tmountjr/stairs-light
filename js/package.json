@@ -1,0 +1,26 @@
+{
+  "name": "touch-admin",
+  "version": "1.0.0",
+  "description": "Sketch Upload",
+  "scripts": {
+    "watch": "webpack --watch --mode development",
+    "build:dev": "webpack --mode development",
+    "build:prod": "webpack"
+  },
+  "author": "Tom Mount <tmountjr@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "vue": "^2.6.12"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.1",
+    "style-loader": "^2.0.0",
+    "vue-loader": "^15.9.6",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^5.16.0",
+    "webpack-cli": "^4.4.0"
+  }
+}
