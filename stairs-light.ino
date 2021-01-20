@@ -30,91 +30,36 @@ const char* host = "stairs_led";
 WebServer server(80);
 
 /*
- * Login page
- */
-
-const char* loginIndex = R"EOF(
-<form name-"loginForm">
-  <table width="20%" bgcolor="A09F9F" align="center">
-    <tr>
-      <td colspan=2>
-        <center><font size=4><b>ESP32 Login Page</b></font></center>
-        <br/>
-      </td>
-      <br/>
-      <br/>
-    </tr>
-    <tr>
-      <td>Username:</td>
-      <td>
-        <input type="text" size=25 name="userid">
-        <br/>
-      </td>
-    </tr>
-    <br/>
-    <br/>
-    <tr>
-      <td>Password:</td>
-      <td>
-        <input type="password" size=25 name="pwd">
-        <br/>
-      </td>
-    </tr>
-    <tr>
-      <td><input type="submit" onclick="check(this.form)" value="Login"></td>
-    </tr>
-  </table>
-</form>
-<script>
-  function check(form) {
-    if (form.userid.value == "admin" && form.pwd.value == "admin") {
-      window.open("/serverIndex");
-    } else {
-      alert("Username/Password do not match.");
-    }
-  }
-</script>
-)EOF";
- 
-/*
  * Server Index Page
  */
- 
-const char* serverIndex = R"EOF(
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<form method='POST' action='#' enctype='multipart/form-data' id='upload_form'>
-  <input type='file' name='update'>
-  <input type='submit' value='Update'>
-</form>
-<div id='prg'>progress: 0%</div>
-<script>
-  $('form').submit(function (e) {
-    e.preventDefault();
-    var form = $('#upload_form')[0];
-    var data = new FormData(form);
-    $.ajax({
-      url: '/update',
-      type: 'POST',
-      data: data,
-      contentType: false,
-      processData: false,
-      xhr: function () {
-        var xhr = new window.XMLHttpRequest();
-        xhr.upload.addEventListener('progress', function (evt) {
-          if (evt.lengthComputable) {
-            var per = evt.loaded / evt.total;
-            $('#prg').html('progress: ' + Math.round(per * 100) + '%');
-          }
-        }, false);
-        return xhr;
-      },
-      success: function (d, s) {
-        console.log('success!')
-      },
-      error: function (a, b, c) {}
-    });
-  });
-</script>
+const char *serverIndex = R"EOF(
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Upload Sketch</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/base-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+      .content {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pure-g">
+      <div class="content pure-u-1-3">
+        <div id="app"></div>
+      </div>
+    </div>
+
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/tmountjr/stairs-light/js/dist/main.js"></script>
+  </body>
+</html>
 )EOF";
 
 // Turn off the LED, track state, and reset timer.
@@ -168,10 +113,6 @@ void setup() {
   }
 
   server.on("/", []() {
-    server.sendHeader("Connection", "close");
-    server.send(200, "text/html", loginIndex);
-  });
-  server.on("/serverIndex", HTTP_GET, []() {
     server.sendHeader("Connection", "close");
     server.send(200, "text/html", serverIndex);
   });

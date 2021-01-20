@@ -80,7 +80,7 @@ export default {
       let formData = new FormData()
       formData.append('file', this.toUpload)
       try {
-        await axios.post('/update', formData, {
+        const resp = await axios.post('/update', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           },
