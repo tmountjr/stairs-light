@@ -4,6 +4,8 @@
 #include <ESPmDNS.h>
 #include <Update.h>
 
+const VERSION = 1.2;
+
 // Touch sensing variables
 const float THRESHOLD = 7;
 const long ACTIVATE_FOR = 60000;
@@ -99,6 +101,9 @@ void handleTouchEvent() {
 void setup() {
   pinMode(LED_PIN, OUTPUT);
   Serial.begin(115200);
+
+  Serial.print("Current version: ");
+  Serial.println(VERSION);
 
   WiFi.begin(ssid, password);
   while (WiFi.waitForConnectResult() != WL_CONNECTED) {
